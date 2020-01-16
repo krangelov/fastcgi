@@ -2,7 +2,7 @@ Name:           fastcgi
 Version:        3001.0.2.4
 x-revision: 1
 Copyright:      Bjorn Bringert, Lemmih
-Maintainer:     none
+Maintainer:     Krasimir Angelov <kr.angelov@gmail.com>
 License:        BSD3
 license-file:   LICENSE
 Category:       Network
