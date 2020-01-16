@@ -8,12 +8,10 @@ license-file:   LICENSE
 Category:       Network
 Synopsis:       A Haskell library for writing FastCGI programs
 Description:
- This library lets you write FastCGI programs. This package reuses the
+ This library lets you write FastCGI programs. The package reuses the
  cgi package API, making it very easy to port CGI programs to FastCGI.
  The FastCGI C development kit is required to build this library.
 Cabal-version: >= 1.2.0
-build-type:     Configure
-extra-source-files: configure fastcgi.buildinfo.in
 
 flag small_base
   description: Choose the new smaller, split-up base package.
