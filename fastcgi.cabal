@@ -11,8 +11,12 @@ Description:
  This library lets you write FastCGI programs. The package reuses the
  cgi package API, making it very easy to port CGI programs to FastCGI.
  The FastCGI C development kit is required to build this library.
-Cabal-version: >= 1.2.0
+Cabal-version: >= 1.6
 build-type:     Simple
+
+source-repository head
+  type:     git
+  location: https://github.com/krangelov/fastcgi
 
 flag small_base
   description: Choose the new smaller, split-up base package.
@@ -22,6 +26,6 @@ library
   Extensions: ForeignFunctionInterface, EmptyDataDecls, ScopedTypeVariables
   Exposed-Modules:
      Network.FastCGI
-  ghc-options: -O2 -Wall
+  ghc-options: -Wall
   includes: fcgiapp.h
   extra-libraries: fcgi
