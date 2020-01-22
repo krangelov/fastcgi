@@ -75,6 +75,9 @@ foreign import ccall unsafe "fcgiapp.h FCGX_GetStr" fcgx_getStr
 foreign import ccall unsafe "fcgiapp.h FCGX_PutStr" fcgx_putStr
     :: CString -> CInt -> StreamPtr -> IO CInt
 
+foreign import ccall unsafe "fcgiapp.h FCGX_FFlush" fcgx_fflush
+    :: StreamPtr -> IO CInt
+
 foreign import ccall safe "fcgiapp.h FCGX_Accept" fcgx_accept
     :: Ptr StreamPtr -> Ptr StreamPtr -> Ptr StreamPtr -> Ptr Environ -> IO CInt
 foreign import ccall unsafe "fcgiapp.h FCGX_Finish" fcgx_finish
@@ -229,8 +232,9 @@ sPutStr h str =
   `catch` \(_ :: IOException) -> return ()
 
 fcgxPutCStringLen :: StreamPtr -> CStringLen -> IO ()
-fcgxPutCStringLen h (cs,len) =
+fcgxPutCStringLen h (cs,len) = do
     testReturn "FCGX_PutStr" $ fcgx_putStr cs (fromIntegral len) h
+    testReturn "FCGX_FFlush" $ fcgx_fflush h
 
 sRead :: StreamPtr -> IO Lazy.ByteString
 sRead h = buildByteString (fcgxGetBuf h) 4096
